@@ -17,4 +17,8 @@ $ sudo apt-get install postfix
 Usage
 -----
 
-`run.sh` will start a micro node server and open a web page in your favorite browser. Profit!
+`run.sh` will start a micro node server and open a web page in your favorite
+browser. Alternatively, you can do `node app.js` and then open
+`http://localhost:4242` in a web browser.
+
+Profit!

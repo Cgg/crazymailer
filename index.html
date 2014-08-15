@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Crazy Mailer</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+  rel="stylesheet">
+  <style>
+   #head {
+   background-color: #00549E;
+   border-bottom: 1px solid #BFBFBF;
+ }
+ .page-header {
+   border-bottom: none;
+ }
+ .footer {
+   position: relative;
+   bottom: 0;
+   padding-top: 1em;
+   width: 100%;
+   height: 50px;
+   background-color: #f5f5f5;
+ }
+ .muted {
+   color: #fafafa;
+ }
+ .form-actions {
+   margin-top: 1em;
+ }
+ .fa {
+   color: #00549E;
+ }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid" id="head">
+    <div class="col-md-9">
+      <div class="page-header">
+        <h1 style="color: #fafafa">Crazy Mailer - become anybody. <em>Like, really anybody.</em></h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+    <div class="col-md-12" style="padding: 1em">
+      <form name="configure"></form>
+      <div id="res" class="alert"></div>
+      <h3><i class="fa fa-thumbs-o-up"></i> <a href="http://www.reddit.com/r/cats/top/">Tired of causing chaos?</a></h3>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="lib/underscore.js"></script>
+  <script type="text/javascript" src="lib/opt/jsv.js"></script>
+  <script type="text/javascript" src="lib/jsonform.js"></script>
+  <script type="text/javascript">
+
+  $('form').jsonForm({
+    schema: {
+      from: {
+        type: 'email',
+        title: 'From (ex: barack@gov.us)',
+        required: true
+      },
+      to: {
+        type: 'email',
+        title: 'To (REALLY anybody):',
+        required: true
+      },
+      subject: {
+        type: 'text',
+        title: 'Subject:',
+        required: true
+      },
+      text: {
+        type: 'text',
+        title: 'Email body:',
+        required: true
+      }
+    },
+    onSubmit: function(errors, values) {
+      if (errors) {
+        $('#res').html('<p>Input invalid.</p>');
+      } else {
+        $.ajax({
+          url: "/lol",
+          type: "POST",
+          data: values,
+          dataType: "json",
+          success: function(response, textStatus, jqXHR) {
+            $('#res').html('<p>From: ' + values.from + '<br>To: ' + values.to + '<br>Subject:' + values.subject + '<br>Message:' + values.text +'</p>');
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            $('#res').html('<p>Unable to save config.</p>');
+          }
+        });
+      }
+    }
+  });
+  </script>
+</body>
+
+</html>

@@ -9,7 +9,8 @@ Installation
 ------------
 
 ```
-$ git clone https://github.com/Cgg/crazymailer.git
+$ git clone https://github.com/Cgg/crazymailer.git && cd crazymailer
+$ npm install
 $ sudo apt-get install postfix
 ```
 

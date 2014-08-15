@@ -101,11 +101,11 @@
     }, {
       "type": "submit",
       "title": "Send"
-    }]
-  }, {
+    }],
     onSubmit: function(errors, values) {
       if (errors) {
         $('#res').html('<p>Input invalid.</p>');
+        console.log(errors);
       } else {
         $.ajax({
           url: "/lol",
@@ -122,6 +122,7 @@
               'Are you sure postfix is running?');
           }
         });
+        console.log(values);
       }
     }
   });

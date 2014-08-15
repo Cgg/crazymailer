@@ -50,44 +50,56 @@
 
   <div class="container-fluid">
 
-    <div class="col-md-12" id="big" style="padding: 1em">
+    <div class="col-md-3" id="big" style="padding: 1em">
       <form name="configure"></form>
       <div id="res" class="alert"></div>
       <h3><i class="fa fa-thumbs-o-up"></i>  <a href="http://www.reddit.com/r/cats/top/">Tired of causing chaos?</a>
       </h3>
     </div>
     <div class="col-md-12">
-      <img src="giphy.gif" class="collapse gif" height="200"  width="500" />
+      <img src="giphy.gif" class="collapse gif" height="200" width="500" />
     </div>
   </div>
 
   <script type="text/javascript" src="lib/underscore.js"></script>
-  <script type="text/javascript" src="lib/opt/jsv.js"></script>
+  <script type="text/javascript" src="lib/jsv.js"></script>
   <script type="text/javascript" src="lib/jsonform.js"></script>
   <script type="text/javascript">
   $('form').jsonForm({
-    schema: {
-      from: {
-        type: 'email',
-        title: 'From (ex: barack@gov.us)',
-        required: true
+    "schema": {
+      "body": {
+        "type": "string",
+        "title": "body"
       },
-      to: {
-        type: 'email',
-        title: 'To (REALLY anybody):',
-        required: true
+
+      "from": {
+        "type": "string",
+        "title": "from",
       },
-      subject: {
-        type: 'text',
-        title: 'Subject:',
-        required: true
+      "to": {
+        "type": "string",
+        "title": "to"
       },
-      text: {
-        type: 'text',
-        title: 'Email body:',
-        required: true
+      "subject": {
+        "type": "string",
+        "title": "subject"
       }
     },
+    "form": [{
+      "key": "from",
+      "placeholder": "b.obama@gov.us"
+    }, {
+      "type": "section",
+      "title": "Author",
+      "items": [
+        "to",
+        "subject"
+      ]
+    }, {
+      "key": "body",
+      "type": "textarea"
+    }, ]
+  }, {
     onSubmit: function(errors, values) {
       if (errors) {
         $('#res').html('<p>Input invalid.</p>');
@@ -98,7 +110,8 @@
           data: values,
           dataType: "json",
           success: function(response, textStatus, jqXHR) {
-            $('#res').html('<p>From: ' + values.from + '<br>To: ' + values.to +
+            $('#res').html('<p>From: ' + values.from + '<br>To: ' +
+              values.to +
               '<br>Subject:' + values.subject + '<br>Message:' + values.text +
               '</p>');
             $("#big").empty();

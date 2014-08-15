@@ -93,10 +93,11 @@
           data: values,
           dataType: "json",
           success: function(response, textStatus, jqXHR) {
-            $('#res').html('<p>From: ' + values.from + '<br>To: ' + values.to + '<br>Subject:' + values.subject + '<br>Message:' + values.text +'</p>');
+            $('#res').html('<em>Bravo!</em> Email sent successfully!');
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            $('#res').html('<p>Unable to save config.</p>');
+            $('#res').html('<em>Woops.</em> Looks like something went wrong. ' +
+              'Are you sure postfix is running?');
           }
         });
       }

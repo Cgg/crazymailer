@@ -15,7 +15,7 @@ app.post('/lol', function(req, res, next) {
     from: req.body.from,
     to: req.body.to,
     subject: req.body.subject,
-    text: req.body.text
+    text: req.body.body
   };
 
   t.sendMail(mailOption, function(err, info) {

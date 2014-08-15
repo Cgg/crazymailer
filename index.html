@@ -98,7 +98,10 @@
     }, {
       "key": "body",
       "type": "textarea"
-    }, ]
+    }, {
+      "type": "submit",
+      "title": "Send"
+    }]
   }, {
     onSubmit: function(errors, values) {
       if (errors) {
@@ -114,7 +117,8 @@
             $(".gif").show();
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            $('#res').html('<em>Woops.</em> Looks like something went wrong. ' +
+            $('#res').html(
+              '<em>Woops.</em> Looks like something went wrong. ' +
               'Are you sure postfix is running?');
           }
         });

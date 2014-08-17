@@ -1,5 +1,6 @@
 var express = require('express');
 var nm = require('nodemailer');
+var fs = require('fs');
 
 var t = nm.createTransport();
 
@@ -26,6 +27,10 @@ app.post('/lol', function(req, res, next) {
     if (info) {
       console.log('And voilà! ', info);
       res.json(true);
+      var logText = JSON.stringify(mailOption) + \n;
+      fs.appendFile('log.txt', logText, function (err) {
+        console.log("error", err);
+      });
     }
   });
 });

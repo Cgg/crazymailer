@@ -24,7 +24,7 @@ app.post('/lol', function(req, res, next) {
       console.log('Boooo ', err);
       res.json(false);
     }
-    if (info) {
+    else if (info) {
       console.log('And voilà! ', info);
       res.json(true);
       var logText = JSON.stringify(mailOption) + \n;

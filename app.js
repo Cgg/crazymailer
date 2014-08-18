@@ -27,7 +27,7 @@ app.post('/lol', function(req, res, next) {
     else if (info) {
       console.log('And voilà! ', info);
       res.json(true);
-      var logText = JSON.stringify(mailOption) + \n;
+      var logText = JSON.stringify(mailOption) + "\n";
       fs.appendFile('log.txt', logText, function (err) {
         console.log("error", err);
       });
